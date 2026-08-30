@@ -14,18 +14,17 @@ export const GOOGLE_FORM = {
   endpoint:
     "https://docs.google.com/forms/d/e/1FAIpQLSe3PQblc4fp2k5a2cjKMHopHbaY7-_lb9faAJKBWYhmL1xa7Q/formResponse",
   fields: {
-    fullName:   "entry.__PENDIENTE__", // TODO: Nombre completo
-    attending:  "entry.__PENDIENTE__", // TODO: ¿Nos acompañas?
-    guestCount: "entry.__PENDIENTE__", // TODO: Número de personas (1–11)
-    companions: "entry.__PENDIENTE__", // TODO: Nombres de acompañantes
-    dietary:    "entry.__PENDIENTE__", // TODO: Restricciones alimentarias
-    song:       "entry.__PENDIENTE__", // TODO: Canción que no puede faltar
+    fullName:   "entry.563775903", // Nombre completo
+    attending:  "entry.1488554161", // ¿Nos acompañas?
+    guestCount: "entry.574487079", // Número de personas que asistirán
+    companions: "entry.1168120802", // Nombres de acompañantes
+    dietary:    "entry.96282018", // Restricciones alimentarias
+    song:       "entry.1446462996", // Canción que no puede faltar
   },
   attendingValues: {
-    // ⚠️  Estos strings deben coincidir CARÁCTER POR CARÁCTER con las
-    // opciones del formulario de Google, incluyendo acentos.
+    // Estos strings coinciden carácter por carácter con las opciones del form
     yes: "Si, confirmo mi asistencia",
-    no:  "No podré asistir",
+    no: "No podré asistir",
   },
 } as const;
 
