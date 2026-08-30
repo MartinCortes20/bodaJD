@@ -1,0 +1,53 @@
+---
+/**
+ * SplitText — Parte el texto en <span> por letra o palabra.
+ * Accesibilidad:
+ *   - Cada <span> tiene aria-hidden="true"
+ *   - El contenedor tiene aria-label con el texto completo
+ *   - El lector de pantalla lee el texto completo, no letra por letra
+ *
+ * Animación controlada por CSS con --stagger por índice.
+ * Con prefers-reduced-motion: reduce, las clases de animación no tienen efecto.
+ */
+interface Props {
+  text: string;
+  /** Partir por letra (default) o por palabra */
+  splitBy?: "letter" | "word";
+  /** Clase extra para el contenedor */
+  class?: string;
+  /** Delay base en ms antes de empezar el stagger */
+  baseDelay?: number;
+  /** Tag del contenedor */
+  as?: string;
+}
+
+const {
+  text,
+  splitBy = "letter",
+  class: extraClass = "",
+  baseDelay = 0,
+  as: Tag = "span",
+} = Astro.props;
+
+const units =
+  splitBy === "letter"
+    ? text.split("") // cada carácter
+    : text.split(/\s+/); // cada palabra
+---
+
+<Tag
+  aria-label={text}
+  class:list={["split-text-container", extraClass]}
+>
+  {
+    units.map((unit, i) => (
+      <span
+        class="letter-span"
+        aria-hidden="true"
+        style={`--stagger: ${i}; animation-delay: calc(${baseDelay}ms + ${i} * var(--dur-letter, 80ms))`}
+      >
+        {unit === " " ? "\u00A0" : unit}
+      </span>
+    ))
+  }
+</Tag>

@@ -1,0 +1,92 @@
+---
+/**
+ * 07-MesaDeRegalos — Opciones de regalo y sobre.
+ * Fondo: navy.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import Button from "../components/ui/Button.astro";
+import Icon from "../components/ui/Icon.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+import { giftOptions } from "../../infrastructure/content/gifts";
+---
+
+<section
+  id="mesa-de-regalos"
+  class="bg-navy text-cream"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-labelledby="regalos-heading"
+>
+  <div class="max-w-3xl mx-auto px-6 text-center">
+
+    <Reveal>
+      <p
+        class="uppercase tracking-[0.3em] text-peach mb-4"
+        style="font-size: var(--text-xs); font-family: var(--font-body);"
+      >
+        {/* TODO: revisar copy */}
+        Regalos
+      </p>
+    </Reveal>
+
+    <Reveal delay={80}>
+      <SectionTitle
+        text="Mesa de regalos"
+        id="regalos-heading"
+        color="cream"
+        class="mb-6"
+      />
+    </Reveal>
+
+    <Reveal delay={160}>
+      <p
+        class="text-cream/60 leading-relaxed mb-14"
+        style="font-family: var(--font-body); font-size: var(--text-base); max-width: 50ch; margin-left: auto; margin-right: auto;"
+      >
+        {/* TODO: revisar copy */}
+        {weddingConfig.gifts.description}
+      </p>
+    </Reveal>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      {giftOptions.map((option, i) => (
+        <Reveal delay={260 + i * 120}>
+          <div class="bg-navy-soft rounded-2xl p-8 border border-peach/20 flex flex-col items-center gap-4 h-full">
+            <div class="w-14 h-14 rounded-full bg-navy flex items-center justify-center border border-peach/30">
+              <Icon name={option.icon as any} size={24} class="text-peach" />
+            </div>
+            <h3
+              class="text-cream"
+              style="font-family: var(--font-display); font-size: var(--text-xl); letter-spacing: 0.1em;"
+            >
+              {option.name === "PENDIENTE" ? "Lista de regalos" : option.name}
+              {/* TODO: Nombre real pendiente */}
+            </h3>
+            <p
+              class="text-cream/50 leading-relaxed text-center flex-1"
+              style="font-family: var(--font-body); font-size: var(--text-sm);"
+            >
+              {option.description}
+            </p>
+            {option.url && option.url !== "PENDIENTE" && (
+              <Button
+                href={option.url}
+                variant="outline"
+                target="_blank"
+              >
+                Ver lista
+              </Button>
+            )}
+            {option.url === "PENDIENTE" && (
+              <p class="text-peach/40 text-xs italic">
+                {/* TODO: Agregar el link real */}
+                Link pendiente
+              </p>
+            )}
+          </div>
+        </Reveal>
+      ))}
+    </div>
+
+  </div>
+</section>

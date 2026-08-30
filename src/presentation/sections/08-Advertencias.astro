@@ -1,0 +1,67 @@
+---
+/**
+ * 08-Advertencias — Avisos importantes. Tono amable, no imperativo.
+ * Fondo: blush.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import Icon from "../components/ui/Icon.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+---
+
+<section
+  id="advertencias"
+  class="bg-blush text-navy"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-labelledby="avisos-heading"
+>
+  <div class="max-w-3xl mx-auto px-6 text-center">
+
+    <Reveal>
+      <p
+        class="uppercase tracking-[0.3em] text-rose mb-4"
+        style="font-size: var(--text-xs); font-family: var(--font-body);"
+      >
+        {/* TODO: revisar copy */}
+        Antes de que llegues
+      </p>
+    </Reveal>
+
+    <Reveal delay={80}>
+      <SectionTitle
+        text="Un par de detalles"
+        id="avisos-heading"
+        color="navy"
+        class="mb-14"
+      />
+    </Reveal>
+
+    <ul class="flex flex-col gap-6" role="list">
+      {weddingConfig.warnings.map((warning, i) => (
+        <Reveal delay={160 + i * 120}>
+          <li class="flex items-start gap-5 text-left bg-white/50 rounded-2xl px-6 py-6 border border-rose/10">
+            <div class="shrink-0 mt-0.5 text-rose">
+              <Icon name={warning.icon as any} size={22} />
+            </div>
+            <div>
+              <h3
+                class="text-navy font-semibold mb-1"
+                style="font-family: var(--font-body); font-size: var(--text-base);"
+              >
+                {warning.title}
+              </h3>
+              <p
+                class="text-navy/60 leading-relaxed"
+                style="font-family: var(--font-body); font-size: var(--text-sm);"
+              >
+                {/* TODO: revisar copy */}
+                {warning.body}
+              </p>
+            </div>
+          </li>
+        </Reveal>
+      ))}
+    </ul>
+
+  </div>
+</section>

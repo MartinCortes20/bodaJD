@@ -1,0 +1,33 @@
+---
+/**
+ * SectionTitle — Título de sección en Italiana, uppercase, letter-spacing amplio.
+ */
+interface Props {
+  text: string;
+  /** navy = texto navy (sobre fondo claro) | cream = texto cream (sobre navy) */
+  color?: "navy" | "cream";
+  /** Tag HTML a usar. Por defecto h2. */
+  as?: "h1" | "h2" | "h3";
+  class?: string;
+}
+
+const {
+  text,
+  color = "cream",
+  as: Tag = "h2",
+  class: extraClass = "",
+} = Astro.props;
+
+const colorClass = color === "navy" ? "text-navy" : "text-cream";
+---
+
+<Tag
+  class:list={[
+    "font-display uppercase tracking-widest leading-tight",
+    colorClass,
+    extraClass,
+  ]}
+  style="font-family: var(--font-display); letter-spacing: 0.18em; font-size: var(--text-2xl);"
+>
+  {text}
+</Tag>

@@ -1,0 +1,120 @@
+---
+/**
+ * 11-GaleriaDos — Segunda galería, composición distinta a GaleriaUno.
+ * Layout: fila de una foto grande + dos pequeñas en columna.
+ * Fondo: navy.
+ * TODO: Reemplazar placeholders con fotos reales.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+
+const photos = [
+  {
+    src: "/assets/images/pareja/placeholder.svg",
+    alt: `${weddingConfig.couple.name1} y ${weddingConfig.couple.name2} en su historia`,
+    wide: true,
+  },
+  {
+    src: "/assets/images/pareja/placeholder.svg",
+    alt: `Un instante de complicidad entre las novias`,
+    wide: false,
+  },
+  {
+    src: "/assets/images/pareja/placeholder.svg",
+    alt: `Las novias felices juntas`,
+    wide: false,
+  },
+  {
+    src: "/assets/images/pareja/placeholder.svg",
+    alt: `${weddingConfig.couple.name1} y ${weddingConfig.couple.name2} mirando al horizonte`,
+    wide: true,
+  },
+];
+// TODO: Reemplazar estos placeholders con fotos reales en public/assets/images/pareja/
+---
+
+<section
+  id="galeria-dos"
+  class="bg-navy"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-label="Segunda galería de fotos"
+>
+  <div class="max-w-5xl mx-auto px-6">
+
+    <Reveal>
+      <p
+        class="text-center uppercase tracking-[0.3em] text-peach mb-10"
+        style="font-size: var(--text-xs); font-family: var(--font-body);"
+      >
+        {/* TODO: revisar copy */}
+        Momentos que nos definen
+      </p>
+    </Reveal>
+
+    {/* Composición: dos filas con layouts distintos */}
+    <div class="flex flex-col gap-3">
+
+      {/* Fila 1: foto ancha + dos verticales */}
+      <Reveal>
+        <div class="grid grid-cols-3 gap-3">
+          <figure class="col-span-2 overflow-hidden rounded-xl">
+            <img
+              src={photos[0]!.src}
+              alt={photos[0]!.alt}
+              width={900}
+              height={600}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover"
+              style="aspect-ratio: 3/2;"
+            />
+          </figure>
+          <div class="flex flex-col gap-3">
+            <figure class="overflow-hidden rounded-xl flex-1">
+              <img
+                src={photos[1]!.src}
+                alt={photos[1]!.alt}
+                width={400}
+                height={400}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover"
+                style="aspect-ratio: 1/1;"
+              />
+            </figure>
+            <figure class="overflow-hidden rounded-xl flex-1">
+              <img
+                src={photos[2]!.src}
+                alt={photos[2]!.alt}
+                width={400}
+                height={400}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover"
+                style="aspect-ratio: 1/1;"
+              />
+            </figure>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* Fila 2: foto panorámica completa */}
+      <Reveal delay={120}>
+        <figure class="overflow-hidden rounded-xl">
+          <img
+            src={photos[3]!.src}
+            alt={photos[3]!.alt}
+            width={1200}
+            height={500}
+            loading="lazy"
+            decoding="async"
+            class="w-full object-cover"
+            style="aspect-ratio: 12/5;"
+          />
+        </figure>
+      </Reveal>
+
+    </div>
+
+  </div>
+</section>

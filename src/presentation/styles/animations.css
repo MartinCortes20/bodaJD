@@ -1,0 +1,117 @@
+/* ================================================================
+   ANIMATIONS — Boda de Dany & Jazmín
+   Todas las animaciones están condicionadas a prefers-reduced-motion.
+   Con reduce activo: todo inmediatamente visible, sin movimiento.
+   ================================================================ */
+
+/* ── Keyframes ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(1.5rem); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes letter-appear {
+    from { opacity: 0; transform: translateY(0.5em) rotate(-3deg); }
+    to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+
+  @keyframes hairline-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(6px); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
+  }
+}
+
+/* ── Clases de utilidad para reveal ────────────────────────────── */
+
+/*
+  Estado inicial de los elementos con [data-reveal]:
+  invisibles hasta que el IntersectionObserver añade .is-visible.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-reveal="fade"] {
+    transform: none;
+  }
+}
+
+/* Con reduce motion: todo visible de inmediato */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── Clases de animación para SplitText (hero) ─────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .letter-span {
+    display: inline-block;
+    opacity: 0;
+    animation: letter-appear var(--dur-slow) var(--ease-out) both;
+    animation-delay: calc(var(--stagger, 0) * var(--dur-letter, 80ms));
+  }
+
+  .hairline-hero {
+    transform-origin: center;
+    transform: scaleX(0);
+    animation: hairline-grow 0.8s var(--ease-out) both;
+  }
+
+  .hero-date {
+    opacity: 0;
+    animation: fade-in 0.6s var(--ease-out) both;
+  }
+
+  .scroll-hint-arrow {
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+
+  .music-toggle-pulse {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-span,
+  .hairline-hero,
+  .hero-date {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .scroll-hint-arrow,
+  .music-toggle-pulse {
+    animation: none !important;
+  }
+}

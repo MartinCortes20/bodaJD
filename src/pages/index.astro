@@ -1,17 +1,44 @@
 ---
+/**
+ * index.astro — Página principal de la invitación de boda.
+ * Compone las 13 secciones en orden.
+ */
+import BaseLayout from "../presentation/layouts/BaseLayout.astro";
 
+// Secciones en orden
+import Hero from "../presentation/sections/01-Hero.astro";
+import Countdown from "../presentation/sections/02-Countdown.astro";
+import FechaCalendario from "../presentation/sections/03-FechaCalendario.astro";
+import Invitacion from "../presentation/sections/04-Invitacion.astro";
+import Ubicacion from "../presentation/sections/05-Ubicacion.astro";
+import CodigoVestimenta from "../presentation/sections/06-CodigoVestimenta.astro";
+import MesaDeRegalos from "../presentation/sections/07-MesaDeRegalos.astro";
+import Advertencias from "../presentation/sections/08-Advertencias.astro";
+import GaleriaUno from "../presentation/sections/09-GaleriaUno.astro";
+import Itinerario from "../presentation/sections/10-Itinerario.astro";
+import GaleriaDos from "../presentation/sections/11-GaleriaDos.astro";
+import Despedida from "../presentation/sections/12-Despedida.astro";
+import Confirmacion from "../presentation/sections/13-Confirmacion.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Hero />
+  <Countdown />
+  <FechaCalendario />
+  <Invitacion />
+  <Ubicacion />
+  <CodigoVestimenta />
+  <MesaDeRegalos />
+  <Advertencias />
+  <GaleriaUno />
+  <Itinerario />
+  <GaleriaDos />
+  <Despedida />
+  <Confirmacion />
+</BaseLayout>
+
+<script>
+  // Scripts de cliente
+  import "../presentation/scripts/reveal.ts";
+  import "../presentation/scripts/countdown.ts";
+</script>

@@ -1,0 +1,32 @@
+---
+/**
+ * ScrollHint — Flecha animada sutil que sugiere hacer scroll.
+ * Solo decorativa, aria-hidden.
+ */
+---
+
+<div
+  class="flex flex-col items-center gap-2 mt-8"
+  aria-hidden="true"
+>
+  <span
+    class="text-peach/60 text-xs uppercase tracking-widest"
+    style="font-family: var(--font-body); font-size: 0.625rem;"
+  >
+    Desliza
+  </span>
+  <svg
+    class="scroll-hint-arrow text-peach/60"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M12 5v14M5 12l7 7 7-7" />
+  </svg>
+</div>

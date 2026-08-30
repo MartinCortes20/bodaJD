@@ -1,0 +1,137 @@
+---
+/**
+ * 02-Countdown — Cuenta regresiva en vivo hasta la boda.
+ * Fondo: cream.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+---
+
+<section
+  id="cuenta-regresiva"
+  class="py-section bg-cream text-navy"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-labelledby="countdown-heading"
+>
+  <div class="max-w-4xl mx-auto px-6 text-center">
+
+    <Reveal>
+      <p
+        class="uppercase tracking-[0.3em] text-peach mb-4"
+        style="font-family: var(--font-body); font-size: var(--text-xs);"
+      >
+        {/* TODO: revisar copy */}
+        Faltan
+      </p>
+    </Reveal>
+
+    <Reveal delay={100}>
+      <h2
+        id="countdown-heading"
+        class="sr-only"
+      >
+        Cuenta regresiva para la boda
+      </h2>
+    </Reveal>
+
+    {/* Contador */}
+    <div
+      id="countdown-container"
+      data-target={weddingConfig.date}
+      class="flex flex-wrap justify-center gap-6 md:gap-10 my-8"
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label="Cuenta regresiva"
+    >
+      {/* Días */}
+      <Reveal delay={0}>
+        <div class="flex flex-col items-center gap-1 min-w-[60px]">
+          <span
+            id="cd-days"
+            class="text-navy leading-none tabular-nums"
+            style="font-family: var(--font-display); font-size: var(--text-4xl);"
+          >0</span>
+          <span
+            class="text-navy/50 uppercase tracking-widest"
+            style="font-size: var(--text-xs);"
+          >días</span>
+        </div>
+      </Reveal>
+
+      <Reveal delay={80}>
+        <div class="flex flex-col items-center self-start pt-2">
+          <span class="text-peach" style="font-size: var(--text-2xl); font-family: var(--font-display);">·</span>
+        </div>
+      </Reveal>
+
+      {/* Horas */}
+      <Reveal delay={100}>
+        <div class="flex flex-col items-center gap-1 min-w-[60px]">
+          <span
+            id="cd-hours"
+            class="text-navy leading-none tabular-nums"
+            style="font-family: var(--font-display); font-size: var(--text-4xl);"
+          >00</span>
+          <span
+            class="text-navy/50 uppercase tracking-widest"
+            style="font-size: var(--text-xs);"
+          >horas</span>
+        </div>
+      </Reveal>
+
+      <Reveal delay={160}>
+        <div class="flex flex-col items-center self-start pt-2">
+          <span class="text-peach" style="font-size: var(--text-2xl); font-family: var(--font-display);">·</span>
+        </div>
+      </Reveal>
+
+      {/* Minutos */}
+      <Reveal delay={200}>
+        <div class="flex flex-col items-center gap-1 min-w-[60px]">
+          <span
+            id="cd-minutes"
+            class="text-navy leading-none tabular-nums"
+            style="font-family: var(--font-display); font-size: var(--text-4xl);"
+          >00</span>
+          <span
+            class="text-navy/50 uppercase tracking-widest"
+            style="font-size: var(--text-xs);"
+          >minutos</span>
+        </div>
+      </Reveal>
+
+      <Reveal delay={240}>
+        <div class="flex flex-col items-center self-start pt-2">
+          <span class="text-peach" style="font-size: var(--text-2xl); font-family: var(--font-display);">·</span>
+        </div>
+      </Reveal>
+
+      {/* Segundos */}
+      <Reveal delay={300}>
+        <div class="flex flex-col items-center gap-1 min-w-[60px]">
+          <span
+            id="cd-seconds"
+            class="text-navy leading-none tabular-nums"
+            style="font-family: var(--font-display); font-size: var(--text-4xl);"
+          >00</span>
+          <span
+            class="text-navy/50 uppercase tracking-widest"
+            style="font-size: var(--text-xs);"
+          >segundos</span>
+        </div>
+      </Reveal>
+    </div>
+
+    <Reveal delay={400}>
+      <p
+        id="cd-message"
+        class="text-navy/60 italic"
+        style="font-family: var(--font-body); font-size: var(--text-base); max-width: 40ch; margin: 0 auto;"
+      >
+        {/* TODO: revisar copy */}
+        …para el día más especial de nuestras vidas.
+      </p>
+    </Reveal>
+
+  </div>
+</section>

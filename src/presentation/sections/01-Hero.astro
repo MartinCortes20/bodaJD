@@ -1,0 +1,120 @@
+---
+/**
+ * 01-Hero — Elemento firma: nombres letra por letra + hairline + fecha.
+ * Fondo: navy (degradado navy → navy-soft como placeholder hasta tener foto).
+ */
+import SplitText from "../components/motion/SplitText.astro";
+import ScrollHint from "../components/ui/ScrollHint.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+
+// Formatear fecha en español
+const eventDate = new Date(weddingConfig.date);
+const formattedDate = eventDate.toLocaleDateString("es-MX", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+// Número de letras en name1 para calcular el delay del name2
+const name1Length = weddingConfig.couple.name1.length;
+const name2BaseDelay = name1Length * 80 + 600; // letras × dur-letter + pausa
+const hairlineDelay = name2BaseDelay + weddingConfig.couple.name2.length * 80 + 300;
+const dateDelay = hairlineDelay + 800;
+---
+
+<section
+  id="hero"
+  class="relative min-h-[100svh] flex flex-col items-center justify-center bg-navy overflow-hidden"
+  aria-label="Sección de bienvenida"
+>
+  {/* Fondo: degradado navy — placeholder hasta tener foto real */}
+  {/* TODO: Reemplazar con <Image> cuando haya foto en public/assets/images/hero/ */}
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(160deg, var(--navy) 0%, var(--navy-soft) 60%, #1a2f4e 100%);"
+    aria-hidden="true"
+  ></div>
+
+  {/* Ornamento decorativo superior */}
+  <div
+    class="absolute top-0 left-0 right-0 h-px"
+    style="background: linear-gradient(90deg, transparent, var(--peach), transparent);"
+    aria-hidden="true"
+  ></div>
+
+  {/* Contenido principal */}
+  <div class="relative z-10 flex flex-col items-center text-center px-6 py-16">
+
+    {/* Subtítulo pre-nombre */}
+    <p
+      class="text-peach/70 uppercase tracking-[0.35em] mb-8"
+      style={`font-family: var(--font-body); font-size: var(--text-xs); opacity: 0; animation: fade-in 0.6s var(--ease-out) both; animation-delay: 200ms;`}
+      aria-hidden="true"
+    >
+      {/* TODO: revisar copy */}
+      Con todo el amor del mundo
+    </p>
+
+    {/* Nombre 1 — Pinyon Script, letra por letra */}
+    <div class="leading-none mb-3">
+      <SplitText
+        text={weddingConfig.couple.name1}
+        splitBy="letter"
+        baseDelay={0}
+        as="h1"
+        class="block text-cream"
+        style="font-family: var(--font-script); font-size: var(--text-hero);"
+      />
+    </div>
+
+    {/* Ampersand */}
+    <p
+      class="text-peach mb-3 leading-none"
+      style={`font-family: var(--font-display); font-size: var(--text-3xl); letter-spacing: 0.1em; opacity: 0; animation: fade-in 0.5s var(--ease-out) both; animation-delay: ${name1Length * 80 + 200}ms;`}
+      aria-hidden="true"
+    >
+      &amp;
+    </p>
+
+    {/* Nombre 2 — Pinyon Script, letra por letra con delay escalonado */}
+    <div class="leading-none mb-10">
+      <SplitText
+        text={weddingConfig.couple.name2}
+        splitBy="letter"
+        baseDelay={name2BaseDelay}
+        as="span"
+        class="block text-cream"
+        style="font-family: var(--font-script); font-size: var(--text-hero);"
+      />
+    </div>
+
+    {/* Hairline de peach — crece desde el centro */}
+    <div
+      class="hairline-hero w-48 md:w-64 h-px bg-peach mx-auto mb-10"
+      style={`animation-delay: ${hairlineDelay}ms;`}
+      aria-hidden="true"
+    ></div>
+
+    {/* Fecha */}
+    <time
+      datetime={weddingConfig.date}
+      class="hero-date text-blush/80 uppercase tracking-[0.25em]"
+      style={`font-family: var(--font-body); font-size: var(--text-sm); animation-delay: ${dateDelay}ms;`}
+    >
+      {formattedDate}
+    </time>
+
+  </div>
+
+  {/* Scroll hint al fondo */}
+  <div class="absolute bottom-8 left-0 right-0 flex justify-center">
+    <ScrollHint />
+  </div>
+
+  {/* Ornamento decorativo inferior */}
+  <div
+    class="absolute bottom-0 left-0 right-0 h-px"
+    style="background: linear-gradient(90deg, transparent, var(--peach)/30, transparent);"
+    aria-hidden="true"
+  ></div>
+</section>

@@ -1,0 +1,26 @@
+---
+/**
+ * Card — Contenedor con fondo, padding y border radius.
+ */
+interface Props {
+  variant?: "light" | "dark";
+  class?: string;
+}
+
+const { variant = "dark", class: extraClass = "" } = Astro.props;
+
+const variantClass =
+  variant === "dark"
+    ? "bg-navy-soft border border-peach/20 text-cream"
+    : "bg-cream border border-navy/10 text-navy";
+---
+
+<div
+  class:list={[
+    "rounded-2xl p-6 md:p-8",
+    variantClass,
+    extraClass,
+  ]}
+>
+  <slot />
+</div>

@@ -1,0 +1,92 @@
+/* ================================================================
+   GLOBAL CSS — Entrypoint de Tailwind v4 para el proyecto boda
+   Importa en este orden:
+     1. tailwindcss (framework)
+     2. tokens.css (custom properties)
+     3. animations.css (keyframes y utilidades de reveal)
+   Expone los tokens a Tailwind v4 vía @theme.
+   ================================================================ */
+
+@import "tailwindcss";
+@import "../presentation/styles/tokens.css";
+@import "../presentation/styles/animations.css";
+
+/* ── Tailwind v4: exponer tokens como colores ─────────────────── */
+@theme {
+  --color-navy:      var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-peach:     var(--peach);
+  --color-blush:     var(--blush);
+  --color-rose:      var(--rose);
+  --color-cream:     var(--cream);
+
+  --font-script:  var(--font-script);
+  --font-display: var(--font-display);
+  --font-body:    var(--font-body);
+}
+
+/* ── Reset y base ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--navy);
+  color: var(--cream);
+  line-height: 1.6;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ── Accesibilidad: foco visible ──────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--peach);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Skip to content ─────────────────────────────────────────── */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  z-index: 9999;
+  background: var(--peach);
+  color: var(--navy);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-to-content:focus {
+  left: 1rem;
+}
+
+/* ── Selección de texto ─────────────────────────────────────────*/
+::selection {
+  background-color: var(--rose);
+  color: var(--navy);
+}
+
+/* ── Imágenes responsivas por defecto ──────────────────────────  */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Tipografía base ─────────────────────────────────────────── */
+p {
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+}

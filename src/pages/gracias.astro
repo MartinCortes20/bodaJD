@@ -1,0 +1,61 @@
+---
+/**
+ * gracias.astro — Página de agradecimiento post-RSVP.
+ * Redirige aquí después de confirmar asistencia.
+ */
+import BaseLayout from "../presentation/layouts/BaseLayout.astro";
+import Button from "../presentation/components/ui/Button.astro";
+import Icon from "../presentation/components/ui/Icon.astro";
+import { weddingConfig } from "../infrastructure/content/wedding.config";
+---
+
+<BaseLayout
+  title={`¡Gracias! — ${weddingConfig.couple.displayNames}`}
+  description="Confirmación recibida. ¡Nos vemos el día de la boda!"
+>
+  <section
+    class="min-h-[100svh] bg-blush text-navy flex flex-col items-center justify-center px-6 text-center"
+    aria-labelledby="gracias-heading"
+  >
+    <div class="max-w-lg mx-auto">
+
+      <div class="flex justify-center mb-6" aria-hidden="true">
+        <Icon name="heart" size={48} class="text-rose" />
+      </div>
+
+      <h1
+        id="gracias-heading"
+        class="text-navy leading-tight mb-6"
+        style="font-family: var(--font-display); font-size: var(--text-3xl); letter-spacing: 0.12em;"
+      >
+        ¡Gracias!
+      </h1>
+
+      <p
+        class="text-navy/70 leading-relaxed mb-4"
+        style="font-family: var(--font-body); font-size: var(--text-lg); max-width: 45ch; margin: 0 auto 1.5rem;"
+      >
+        {/* TODO: revisar copy */}
+        Tu confirmación fue recibida. No sabes lo felices que nos haces.
+      </p>
+
+      <p
+        class="text-navy/50 leading-relaxed mb-10"
+        style="font-family: var(--font-body); font-size: var(--text-base); max-width: 45ch; margin: 0 auto 2.5rem;"
+      >
+        {/* TODO: revisar copy */}
+        Guarda la fecha en tu calendario y no olvides revisar la invitación
+        para saber todo lo que necesitas el día de la boda.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/" variant="primary" id="btn-volver-inicio">
+          Volver a la invitación
+        </Button>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+

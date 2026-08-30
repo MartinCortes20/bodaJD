@@ -1,0 +1,43 @@
+---
+/**
+ * FadeImage — Imagen que aparece con fade al entrar en viewport.
+ * Usa Reveal internamente.
+ */
+import { Image } from "astro:assets";
+import Reveal from "./Reveal.astro";
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+  delay?: number;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: extraClass = "",
+  loading = "lazy",
+  fetchpriority = "auto",
+  delay = 0,
+} = Astro.props;
+---
+
+<Reveal variant="fade" delay={delay} class={extraClass}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+    class="w-full h-full object-cover"
+  />
+</Reveal>

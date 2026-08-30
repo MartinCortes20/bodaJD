@@ -1,0 +1,136 @@
+---
+/**
+ * 05-Ubicacion — Ceremonia y recepción con botones a Google Maps.
+ * Fondo: navy.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import MapLink from "../components/ui/MapLink.astro";
+import Icon from "../components/ui/Icon.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+
+const eventDate = new Date(weddingConfig.date);
+const ceremonyTime = eventDate.toLocaleTimeString("es-MX", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+});
+const receptionDate = new Date(weddingConfig.reception.date);
+const receptionTime = receptionDate.toLocaleTimeString("es-MX", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+});
+---
+
+<section
+  id="ubicacion"
+  class="bg-navy text-cream"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-labelledby="ubicacion-heading"
+>
+  <div class="max-w-4xl mx-auto px-6">
+
+    <Reveal>
+      <div class="text-center mb-14">
+        <p
+          class="uppercase tracking-[0.3em] text-peach mb-4"
+          style="font-size: var(--text-xs); font-family: var(--font-body);"
+        >
+          {/* TODO: revisar copy */}
+          ¿Dónde y cuándo?
+        </p>
+        <SectionTitle text="El lugar" id="ubicacion-heading" color="cream" />
+      </div>
+    </Reveal>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      {/* Ceremonia */}
+      <Reveal delay={0}>
+        <div class="bg-navy-soft rounded-2xl p-8 border border-peach/20 flex flex-col gap-5">
+          <div class="flex items-center gap-3">
+            <Icon name="ring" size={22} class="text-peach shrink-0" />
+            <p
+              class="text-peach uppercase tracking-widest"
+              style="font-family: var(--font-body); font-size: var(--text-xs);"
+            >
+              Ceremonia
+            </p>
+          </div>
+
+          <h3
+            class="text-cream leading-tight"
+            style="font-family: var(--font-display); font-size: var(--text-xl); letter-spacing: 0.1em;"
+          >
+            {/* TODO: Este nombre vendrá de wedding.config.ts */}
+            {weddingConfig.ceremony.name}
+          </h3>
+
+          <p
+            class="text-cream/60 leading-relaxed"
+            style="font-family: var(--font-body); font-size: var(--text-sm);"
+          >
+            {weddingConfig.ceremony.address}
+          </p>
+
+          <time
+            datetime={weddingConfig.date}
+            class="text-blush font-medium"
+            style="font-family: var(--font-body); font-size: var(--text-base);"
+          >
+            {ceremonyTime} hrs
+          </time>
+
+          <MapLink
+            url={weddingConfig.ceremony.mapsUrl}
+            label={weddingConfig.ceremony.name}
+          />
+        </div>
+      </Reveal>
+
+      {/* Recepción */}
+      <Reveal delay={150}>
+        <div class="bg-navy-soft rounded-2xl p-8 border border-peach/20 flex flex-col gap-5">
+          <div class="flex items-center gap-3">
+            <Icon name="wine" size={22} class="text-peach shrink-0" />
+            <p
+              class="text-peach uppercase tracking-widest"
+              style="font-family: var(--font-body); font-size: var(--text-xs);"
+            >
+              Recepción
+            </p>
+          </div>
+
+          <h3
+            class="text-cream leading-tight"
+            style="font-family: var(--font-display); font-size: var(--text-xl); letter-spacing: 0.1em;"
+          >
+            {weddingConfig.reception.name}
+          </h3>
+
+          <p
+            class="text-cream/60 leading-relaxed"
+            style="font-family: var(--font-body); font-size: var(--text-sm);"
+          >
+            {weddingConfig.reception.address}
+          </p>
+
+          <time
+            datetime={weddingConfig.reception.date}
+            class="text-blush font-medium"
+            style="font-family: var(--font-body); font-size: var(--text-base);"
+          >
+            {receptionTime} hrs
+          </time>
+
+          <MapLink
+            url={weddingConfig.reception.mapsUrl}
+            label={weddingConfig.reception.name}
+          />
+        </div>
+      </Reveal>
+
+    </div>
+  </div>
+</section>

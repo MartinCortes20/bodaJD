@@ -1,0 +1,52 @@
+/* ================================================================
+   DESIGN TOKENS — Boda de Dany & Jazmín
+   Paleta navy + blush. Navy como fondo dominante.
+   ================================================================ */
+
+:root {
+  /* ── Paleta de color ─────────────────────────────────────────── */
+  --navy:       #17263F;  /* fondo dominante, texto sobre claro */
+  --navy-soft:  #24385A;  /* superficies elevadas sobre navy */
+  --peach:      #FBC0A9;  /* acento, hairlines, iconos */
+  --blush:      #FCE3DC;  /* fondo de secciones claras */
+  --rose:       #F49BA9;  /* botones, hover, énfasis */
+  --cream:      #FFF9F6;  /* fondo alternativo claro */
+
+  /* ── Tipografía ──────────────────────────────────────────────── */
+  --font-script:  'Pinyon Script', cursive;   /* nombres de las novias */
+  --font-display: 'Italiana', serif;           /* títulos de sección */
+  --font-body:    'Jost', sans-serif;          /* texto corrido, labels */
+
+  /* ── Tamaños de fuente (fluid) ───────────────────────────────── */
+  --text-xs:   clamp(0.75rem,  1.5vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 2vw,   1rem);
+  --text-base: clamp(1rem,     2.5vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 3vw,   1.375rem);
+  --text-xl:   clamp(1.375rem, 4vw,   1.75rem);
+  --text-2xl:  clamp(1.75rem,  5vw,   2.25rem);
+  --text-3xl:  clamp(2.25rem,  6vw,   3rem);
+  --text-4xl:  clamp(3rem,     8vw,   4.5rem);
+  --text-hero: clamp(3.5rem,   12vw,  7rem);
+
+  /* ── Spacing ─────────────────────────────────────────────────── */
+  --section-py:  clamp(4rem, 10vw, 7rem);
+  --section-px:  clamp(1.25rem, 5vw, 2rem);
+
+  /* ── Radios ──────────────────────────────────────────────────── */
+  --radius-sm:  0.375rem;
+  --radius-md:  0.75rem;
+  --radius-lg:  1.5rem;
+  --radius-full: 9999px;
+
+  /* ── Transiciones ────────────────────────────────────────────── */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:    cubic-bezier(0.64, 0, 0.78, 0);
+  --dur-fast:   150ms;
+  --dur-mid:    300ms;
+  --dur-slow:   600ms;
+  --dur-letter: 80ms;   /* delay por letra en SplitText */
+
+  /* ── Hairline del Hero ───────────────────────────────────────── */
+  --hairline-color: var(--peach);
+  --hairline-width: 1px;
+}

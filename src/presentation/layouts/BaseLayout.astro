@@ -1,0 +1,79 @@
+---
+/**
+ * BaseLayout — Layout base de la invitación de boda.
+ * Carga fuentes, meta tags, CSS global y el toggle de música.
+ */
+import "../../styles/global.css";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+import MusicToggle from "../components/ui/MusicToggle.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = weddingConfig.meta.title,
+  description = weddingConfig.meta.description,
+  ogImage = weddingConfig.meta.ogImage,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" /><!-- TODO: cambiar a index,follow en producción -->
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_MX" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: preconnect primero para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Italiana&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+    />
+
+    <!-- CSS Global (importado vía Astro) -->
+  </head>
+
+  <body>
+    <!-- Accesibilidad: saltar al contenido principal -->
+    <a href="#contenido-principal" class="skip-to-content">
+      Saltar al contenido principal
+    </a>
+
+    <main id="contenido-principal">
+      <slot />
+    </main>
+
+    <!-- Toggle de música (solo si está habilitado en wedding.config.ts) -->
+    {weddingConfig.music.enabled && weddingConfig.music.src && (
+      <MusicToggle
+        src={weddingConfig.music.src}
+        title={weddingConfig.music.title ?? "Música de fondo"}
+      />
+    )}
+  </body>
+</html>

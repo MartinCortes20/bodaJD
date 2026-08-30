@@ -1,0 +1,100 @@
+---
+/**
+ * 06-CodigoVestimenta — Código de vestimenta con swatches de paleta.
+ * Fondo: cream.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import Icon from "../components/ui/Icon.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+---
+
+<section
+  id="codigo-vestimenta"
+  class="bg-cream text-navy"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-labelledby="vestimenta-heading"
+>
+  <div class="max-w-3xl mx-auto px-6 text-center">
+
+    <Reveal>
+      <p
+        class="uppercase tracking-[0.3em] text-rose mb-4"
+        style="font-size: var(--text-xs); font-family: var(--font-body);"
+      >
+        {/* TODO: revisar copy */}
+        Para que todas brillen
+      </p>
+    </Reveal>
+
+    <Reveal delay={80}>
+      <SectionTitle
+        text={weddingConfig.dressCode.title}
+        id="vestimenta-heading"
+        color="navy"
+        class="mb-8"
+      />
+    </Reveal>
+
+    <Reveal delay={160}>
+      <p
+        class="text-navy/70 leading-relaxed mb-12"
+        style="font-family: var(--font-body); font-size: var(--text-base); max-width: 55ch; margin-left: auto; margin-right: auto;"
+      >
+        {/* TODO: revisar copy */}
+        {weddingConfig.dressCode.description}
+      </p>
+    </Reveal>
+
+    {/* Swatches */}
+    <Reveal delay={260}>
+      <p
+        class="text-navy/50 uppercase tracking-widest mb-6"
+        style="font-size: var(--text-xs); font-family: var(--font-body);"
+      >
+        Paleta sugerida
+      </p>
+      <div
+        class="flex flex-wrap justify-center gap-4 mb-10"
+        role="list"
+        aria-label="Colores sugeridos para el código de vestimenta"
+      >
+        {weddingConfig.dressCode.suggestedColors.map((color) => (
+          <div
+            class="flex flex-col items-center gap-2"
+            role="listitem"
+          >
+            <div
+              class="w-12 h-12 rounded-full border-2 border-navy/10 shadow-sm"
+              style={`background-color: ${color.hex};`}
+              aria-label={color.name}
+              title={color.name}
+            ></div>
+            <span
+              class="text-navy/50"
+              style="font-size: 0.625rem; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em;"
+            >
+              {color.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </Reveal>
+
+    {/* Lo que evitar */}
+    <Reveal delay={380}>
+      <div class="inline-flex items-start gap-3 bg-rose/10 rounded-2xl px-6 py-4 text-left">
+        <Icon name="warning" size={18} class="text-rose mt-0.5 shrink-0" />
+        <p
+          class="text-navy/70 leading-relaxed"
+          style="font-family: var(--font-body); font-size: var(--text-sm);"
+        >
+          <strong class="text-navy font-semibold">Evita:</strong>{" "}
+          {/* TODO: revisar copy */}
+          {weddingConfig.dressCode.avoidColors}
+        </p>
+      </div>
+    </Reveal>
+
+  </div>
+</section>

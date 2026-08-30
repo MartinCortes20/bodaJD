@@ -1,0 +1,72 @@
+---
+/**
+ * MusicToggle — Botón flotante de reproducción de música.
+ * Solo se renderiza cuando music.enabled === true en wedding.config.ts.
+ * Nunca hace autoplay. Estado inicial: silenciado.
+ */
+interface Props {
+  src: string;
+  title: string;
+}
+
+const { src, title } = Astro.props;
+---
+
+<div
+  id="music-toggle-container"
+  class="fixed bottom-6 right-6 z-50"
+  aria-live="polite"
+>
+  <button
+    id="music-toggle-btn"
+    aria-label="Reproducir música de fondo"
+    aria-pressed="false"
+    class="
+      w-12 h-12 rounded-full bg-navy-soft border border-peach/40
+      flex items-center justify-center
+      text-peach hover:bg-navy hover:border-peach
+      transition-all duration-300 shadow-lg
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peach
+      music-toggle-pulse
+    "
+  >
+    <!-- Ícono play (estado inicial) -->
+    <svg
+      id="icon-play"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <polygon points="5 3 19 12 5 21 5 3" />
+    </svg>
+    <!-- Ícono pause (oculto inicialmente) -->
+    <svg
+      id="icon-pause"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      class="hidden"
+    >
+      <rect x="6" y="4" width="4" height="16" />
+      <rect x="14" y="4" width="4" height="16" />
+    </svg>
+  </button>
+
+  <!-- Audio element — nunca tiene autoplay -->
+  <audio
+    id="bg-audio"
+    src={src}
+    loop
+    preload="none"
+  ></audio>
+</div>
+
+<script>
+  import "../../scripts/music.ts";
+</script>

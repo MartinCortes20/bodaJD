@@ -1,0 +1,79 @@
+---
+/**
+ * 12-Despedida — Frase de cierre en Pinyon Script.
+ * Fondo: blush.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import Icon from "../components/ui/Icon.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+---
+
+<section
+  id="despedida"
+  class="bg-blush text-navy"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-label="Frase de despedida"
+>
+  <div class="max-w-2xl mx-auto px-6 text-center">
+
+    {/* Ornamento */}
+    <Reveal>
+      <div class="flex items-center gap-4 justify-center mb-12" aria-hidden="true">
+        <div class="h-px bg-rose/30 flex-1 max-w-[60px]"></div>
+        <Icon name="sparkle" size={16} class="text-rose" />
+        <div class="h-px bg-rose/30 flex-1 max-w-[60px]"></div>
+      </div>
+    </Reveal>
+
+    <Reveal delay={100}>
+      <p
+        class="text-navy/60 leading-relaxed mb-6"
+        style="font-family: var(--font-body); font-size: var(--text-base);"
+      >
+        {/* TODO: revisar copy */}
+        Con todo nuestro amor,
+      </p>
+    </Reveal>
+
+    <Reveal delay={200}>
+      <p
+        class="text-navy leading-none mb-4"
+        style="font-family: var(--font-script); font-size: var(--text-4xl);"
+      >
+        {weddingConfig.couple.name1}
+        <span
+          class="text-navy/40 mx-3"
+          style="font-family: var(--font-display); font-size: var(--text-2xl);"
+        >
+          &amp;
+        </span>
+        {weddingConfig.couple.name2}
+      </p>
+    </Reveal>
+
+    <Reveal delay={350}>
+      <div
+        class="w-16 h-px bg-rose/40 mx-auto my-10"
+        aria-hidden="true"
+      ></div>
+    </Reveal>
+
+    <Reveal delay={450}>
+      <p
+        class="text-navy/50 italic leading-relaxed"
+        style="font-family: var(--font-body); font-size: var(--text-base); max-width: 45ch; margin: 0 auto;"
+      >
+        {/* TODO: revisar copy — frase de cierre opcional */}
+        Gracias por hacer que este día ya sea más nuestro solo al aceptar la invitación.
+        No podemos esperar a verte.
+      </p>
+    </Reveal>
+
+    <Reveal delay={550}>
+      <div class="flex justify-center mt-10" aria-hidden="true">
+        <Icon name="heart" size={28} class="text-rose" />
+      </div>
+    </Reveal>
+
+  </div>
+</section>

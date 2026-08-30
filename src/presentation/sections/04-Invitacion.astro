@@ -1,0 +1,94 @@
+---
+/**
+ * 04-Invitacion — Texto de invitación. Composición tipográfica, no imagen.
+ * Fondo: blush.
+ */
+import Reveal from "../components/motion/Reveal.astro";
+import Icon from "../components/ui/Icon.astro";
+import { weddingConfig } from "../../infrastructure/content/wedding.config";
+---
+
+<section
+  id="invitacion"
+  class="bg-blush text-navy"
+  style="padding-top: var(--section-py); padding-bottom: var(--section-py);"
+  aria-labelledby="invitacion-heading"
+>
+  <div class="max-w-2xl mx-auto px-6 text-center">
+
+    <Reveal>
+      <p
+        class="uppercase tracking-[0.3em] text-rose mb-8"
+        style="font-size: var(--text-xs); font-family: var(--font-body);"
+      >
+        {/* TODO: revisar copy */}
+        Invitación
+      </p>
+    </Reveal>
+
+    <Reveal delay={80}>
+      <h2
+        id="invitacion-heading"
+        class="sr-only"
+      >
+        Invitación a la boda
+      </h2>
+    </Reveal>
+
+    <Reveal delay={100}>
+      <p
+        class="text-navy/70 mb-10 leading-relaxed"
+        style="font-family: var(--font-body); font-size: var(--text-lg); max-width: 50ch; margin-left: auto; margin-right: auto;"
+      >
+        {/* TODO: revisar copy */}
+        Con el corazón rebosante y la alegría de compartir este momento contigo,
+      </p>
+    </Reveal>
+
+    <Reveal delay={200}>
+      <p
+        class="text-navy mb-6 leading-snug"
+        style="font-family: var(--font-script); font-size: var(--text-3xl);"
+      >
+        {weddingConfig.couple.name1}
+        <span
+          class="text-navy/60 mx-2"
+          style="font-family: var(--font-display); font-size: var(--text-xl);"
+        >y</span>
+        {weddingConfig.couple.name2}
+      </p>
+    </Reveal>
+
+    <Reveal delay={300}>
+      <p
+        class="text-navy/70 mb-12 leading-relaxed"
+        style="font-family: var(--font-body); font-size: var(--text-lg); max-width: 50ch; margin-left: auto; margin-right: auto;"
+      >
+        {/* TODO: revisar copy */}
+        …te invitan a ser parte del día en que dos historias se convierten en una sola.
+        Tu presencia hará que este día sea todavía más nuestro.
+      </p>
+    </Reveal>
+
+    {/* Línea decorativa */}
+    <Reveal delay={400}>
+      <div class="flex items-center gap-4 justify-center mb-12" aria-hidden="true">
+        <div class="h-px bg-rose/30 flex-1 max-w-[80px]"></div>
+        <Icon name="sparkle" size={18} class="text-rose" />
+        <div class="h-px bg-rose/30 flex-1 max-w-[80px]"></div>
+      </div>
+    </Reveal>
+
+    <Reveal delay={500}>
+      <blockquote
+        class="text-navy/60 italic leading-relaxed"
+        style="font-family: var(--font-body); font-size: var(--text-base);"
+      >
+        {/* TODO: revisar copy — agregar cita o frase si lo desean */}
+        "El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."
+        <footer class="mt-2 text-navy/40 not-italic" style="font-size: var(--text-xs); letter-spacing: 0.1em;">— Antoine de Saint-Exupéry</footer>
+      </blockquote>
+    </Reveal>
+
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+/**
+ * Reveal — Wrapper que aplica animación de entrada al scroll.
+ * El script reveal.ts observa [data-reveal] con IntersectionObserver.
+ *
+ * Con prefers-reduced-motion: reduce, los elementos son visibles inmediatamente.
+ */
+interface Props {
+  /** Variante de animación: slide-up (default) o fade */
+  variant?: "slide-up" | "fade";
+  /** Delay adicional en ms para escalonar elementos hermanos */
+  delay?: number;
+  /** Tag HTML del wrapper */
+  as?: string;
+  class?: string;
+}
+
+const {
+  variant = "slide-up",
+  delay = 0,
+  as: Tag = "div",
+  class: extraClass = "",
+} = Astro.props;
+---
+
+<Tag
+  data-reveal={variant === "fade" ? "fade" : ""}
+  style={delay > 0 ? `transition-delay: ${delay}ms` : ""}
+  class:list={[extraClass]}
+>
+  <slot />
+</Tag>
