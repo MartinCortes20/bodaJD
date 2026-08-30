@@ -27,8 +27,8 @@ export const GET: APIRoute = async () => {
 
   return new Response(icsContent, {
     headers: {
-      "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": 'attachment; filename="boda-dany-jazmin.ics"',
+      "Content-Type": "text/calendar",
+      "Content-Disposition": 'inline; filename="boda.ics"',
     },
   });
 };
