@@ -27,13 +27,16 @@ const dateDelay = hairlineDelay + 800;
   class="relative min-h-[100svh] flex flex-col items-center justify-center bg-navy overflow-hidden"
   aria-label="Sección de bienvenida"
 >
-  {/* Fondo: degradado navy — placeholder hasta tener foto real */}
-  {/* TODO: Reemplazar con <Image> cuando haya foto en public/assets/images/hero/ */}
-  <div
-    class="absolute inset-0"
-    style="background: linear-gradient(160deg, var(--navy) 0%, var(--navy-soft) 60%, #1a2f4e 100%);"
+  {/* Fondo: Imagen Hero */}
+  <img
+    src="/assets/images/hero/boda1.jpg"
+    alt="Las novias"
+    class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
+    loading="eager"
+    fetchpriority="high"
     aria-hidden="true"
-  ></div>
+  />
+  <div class="absolute inset-0 bg-navy/40" aria-hidden="true"></div>
 
   {/* Ornamento decorativo superior */}
   <div
