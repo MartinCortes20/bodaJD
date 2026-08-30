@@ -14,22 +14,10 @@ const dayNum = eventDate.toLocaleDateString("es-MX", { day: "numeric" });
 const monthName = eventDate.toLocaleDateString("es-MX", { month: "long" });
 const year = eventDate.getFullYear();
 
-// Generar contenido .ics
-const dtstart = weddingConfig.date.replace(/[-:]/g, "").replace("T", "T").split(".")[0];
-const icsContent = [
-  "BEGIN:VCALENDAR",
-  "VERSION:2.0",
-  "PRODID:-//Boda Dany y Jazmín//ES",
-  "BEGIN:VEVENT",
-  `DTSTART:${dtstart}`,
-  `SUMMARY:Boda de ${weddingConfig.couple.name1} y ${weddingConfig.couple.name2} 💕`,
-  `DESCRIPTION:¡Nos casamos! Confirma tu asistencia en la invitación.`,
-  `LOCATION:${weddingConfig.ceremony.address}`,
-  "END:VEVENT",
-  "END:VCALENDAR",
-].join("\r\n");
-
-const icsHref = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
+// Generar enlace para Google Calendar (mucho más confiable en mobile que el .ics en data URI)
+const dtstart = weddingConfig.date.replace(/[-:]/g, "").split(".")[0];
+// Para Google Calendar es mejor tener start y end, si no tenemos end asuminos +5 horas o lo dejamos igual (pero GCal requiere formato Z o YYYYMMDDTHHMMSS/YYYYMMDDTHHMMSS)
+const gcalHref = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Boda de ${weddingConfig.couple.name1} y ${weddingConfig.couple.name2}`)}&dates=${dtstart}/${dtstart}&details=${encodeURIComponent("¡Nos casamos! Confirma tu asistencia en la invitación.")}&location=${encodeURIComponent(weddingConfig.ceremony.address)}`;
 ---
 
 <section
@@ -97,9 +85,9 @@ const icsHref = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsConten
 
     <Reveal delay={500}>
       <Button
-        href={icsHref}
+        href={gcalHref}
         variant="outline"
-        target="_self"
+        target="_blank"
         id="btn-add-calendar"
       >
         <svg
